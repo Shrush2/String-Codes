@@ -1,0 +1,18 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String encodeBase58(int n){
+         String base58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+         if(n == 0){
+             return "1";
+         }
+        StringBuilder res = new  StringBuilder();
+
+        while(n > 0){
+            int rem = n % 58;
+            res.append(base58.charAt(rem));
+             n /= 58;
+        }
+        return res.reverse().toString();
+    }
+}
