@@ -1,0 +1,41 @@
+class Solution {
+    public boolean strongPasswordCheckerII(String password) {
+        
+        int n = password.length();
+
+        if( n < 8){
+         return false;
+        }
+        
+
+    for(int i=0;i<n-1;i++){
+        if(password.charAt(i) == password.charAt(i+1)){
+            return false;
+        }
+    }
+        
+      boolean haslow = false;
+      boolean hasup = false;
+      boolean hasdig = false;
+      boolean hasspec = false;
+
+      for(char ch:password.toCharArray()){
+
+        if(Character.isUpperCase(ch)){
+            hasup = true;
+        }
+        else if(Character.isLowerCase(ch)){
+            haslow = true;
+        }
+        else if(Character.isDigit(ch)){
+            hasdig = true;
+        }
+        else if(!Character.isLetterOrDigit(ch)){
+            hasspec = true;
+        }
+      }
+    return hasup && haslow && hasdig && hasspec;
+}
+
+
+}
