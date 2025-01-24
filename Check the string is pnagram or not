@@ -1,0 +1,17 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	
+	public static boolean ninjaGram(String str) {
+		str = str.toLowerCase();
+		HashSet<Character>ch = new HashSet<>();
+
+		for(char c:str.toCharArray()){
+			if(c >= 'a' && c <= 'z'){
+				ch.add(c);
+			}
+		}
+
+	return ch.size() == 26;
+	}
+}
