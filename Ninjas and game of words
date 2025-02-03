@@ -1,0 +1,29 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> getFrequency(String str, ArrayList<String> words, int n) {
+		HashMap<String,Integer> wordscount= new HashMap<>();
+		String[] Wordsinstr = str.split(" ");
+
+
+		for(String word : Wordsinstr){
+			wordscount.put(word,wordscount.getOrDefault(word,0)+1);
+		}
+
+		ArrayList<Integer>res = new ArrayList<>();
+		for(String word : words){
+			res.add(wordscount.getOrDefault(word,0));
+		}
+		return res;
+	}
+	
+}
+Ninja and his friend playing a game in which his friend gave him a string ‘STR’ that can contain spaces and a List/Array ‘WORDS’ which is of type string containing ‘N’ strings of words. Ninja’s task is to count the occurrences of all the words in ‘STR’.
+
+For Example:
+
+‘STR’ = “i am a Ninja”, ‘N’ = 3 and ‘WORDS[]’ = [“Ninja”,”a”,”am”]. Then the output should be [1,1,1]. Because the occurrence of “Ninja” in ‘STR’ is 1 and the occurrence of “a” in ‘STR’ is 1.Similarly occurrence of “am” is 1.
+Note:
+
+The output should be in the same order as given in ‘WORDS’.
+Can you help Ninja to generate all valid strings from ‘STR’ by minimum removals?
