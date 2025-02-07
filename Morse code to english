@@ -1,0 +1,29 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{    
+    public static String morseToEnglish(String morsecode) 
+	{
+      Map<String, Character> morseMap = new HashMap<>();
+
+      String[] morseList = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+      "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-"
+      ,"..-","...-",".--","-..-","-.--","--..","-----",".----","..---",
+      "...--","....-",".....","-....","--...","---..","----."};
+
+      String  alpanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+      for(int i =0;i<morseList.length;i++){
+          morseMap.put(morseList[i],alpanumeric.charAt(i));
+      }
+
+      String[] morsewords = morsecode.split(" ");
+      StringBuilder res = new StringBuilder();
+
+      for(String word : morsewords){
+          res.append(morseMap.get(word));
+      }
+      return res.toString();
+    }
+
+}
