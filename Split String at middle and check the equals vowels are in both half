@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*; 
+public class Solution {
+    public static Boolean splitString(String str) {
+     int n = str.length();
+     int mid = n/2;
+     int cnt1 = 0,cnt2 = 0;
+     Set<Character> vowels = new HashSet<>(Arrays.asList('a','e','i','o','u',
+     'A','E','I','O','U'));
+
+     for(int i = 0; i < mid; i++){
+         if(vowels.contains(str.charAt(i))){
+             cnt1++;
+         }
+         if(vowels.contains(str.charAt((mid + i)))){
+             cnt2++;
+         }
+     }
+        
+   return cnt1 == cnt2;
+    }
+
+}
+
+You are given a string ‘str’ of even length. Your task is to find out if we divide the ‘str’ from the middle, will both the substrings contain an equal number of vowels or not.
+
+For Example:
+You are given, ‘str’= ‘codingninjas’, when we split this string we get, ‘coding’ and ‘ninjas’ which both contain 2 vowels each. Hence the answer is ‘True’.
+Detailed explanation ( Input/output format, Notes, Images )
+‘str’ will contain upper and lower case characters of the English alphabet.
+|str| is even.
+Time Limit: 1 sec.
+Note :
+You do not need to print anything. It has already been taken care of. Just implement the given function. 
+Sample Input 1:
+2
+codingninjas
+helloworld
+Sample Output 2:
+True
+False
