@@ -1,0 +1,26 @@
+class Solution {
+    public String reverseWords(String s) {
+        s = s.trim();
+        int n = s.length();
+        String arr[] =  s.split("\\s+");
+
+        StringBuilder ans = new StringBuilder();
+        for(int i = arr.length - 1; i >= 0; i--){
+            ans.append(arr[i]);
+            if(i != 0){
+                ans.append(" ");
+            }
+        }
+        return ans.toString();
+    }
+}
+
+Example 1:
+
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+Example 2:
+
+Input: s = "  hello world  "
+Output: "world hello"
+Explanation: Your reversed string should not contain leading or trailing spaces.
