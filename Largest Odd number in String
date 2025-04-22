@@ -1,0 +1,29 @@
+class Solution {
+    public String largestOddNumber(String num) {
+        int maxodd = -1;
+
+        for(int i = num.length() - 1; i >= 0 ; i--){
+            int digit = num.charAt(i) - '0';
+
+            if(digit % 2 == 1){
+                maxodd = i;
+                break;
+            }
+        }
+        if(maxodd == -1) return "";
+        
+        return num.substring(0,maxodd + 1);//exclude last index end hence we add +1
+    }
+}
+
+Example 1:
+
+Input: num = "52"
+Output: "5"
+Explanation: The only non-empty substrings are "5", "2", and "52". "5" is the only odd number.
+Example 2:
+
+Input: num = "4206"
+Output: ""
+Explanation: There are no odd numbers in "4206".
+Example 3:
