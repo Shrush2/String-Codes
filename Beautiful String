@@ -1,0 +1,30 @@
+import java.util.*;
+public class Solution {
+    public static int makeBeautiful(String str) {
+    
+    int count0 = 0;
+    int count1 = 0;
+    int n = str.length();
+
+    for(int i =0 ;i <n;i++){
+        int bit = str.charAt(i) - '0'; //minus ascii value of '0' from curr char
+
+        if(bit != (i % 2)){ // we check for string start with 0 if bit not match means we need flips
+            count0++;
+        }
+
+        if(bit != ((i+1)%2)){  // we check for string start with 1 if bit not match means we need flips
+          count1++;
+        }
+    }
+    return Math.min(count0,count1); //find minimum operation required to convert beautiful string
+    }
+}
+Ninja has been given a binary string ‘STR’ containing either ‘0’ or ‘1’. A binary string is called beautiful if it contains alternating 0s and 1s.
+For Example:‘0101’, ‘1010’, ‘101’, ‘010’ are beautiful strings.
+He wants to make ‘STR’ beautiful by performing some operations on it. In one operation, Ninja can convert ‘0’ into ‘1’ or vice versa.
+Your task is to determine the minimum number of operations Ninja should perform to make ‘STR’ beautiful.
+
+Minimum operations to make ‘STR’ ‘0010’ beautiful is ‘1’. In one operation, we can convert ‘0’ at index ‘0’ (0-based indexing) to ‘1’. The ‘STR’ now becomes ‘1010’ which is a beautiful string. 
+T.C => O(n)
+S,C => O(n)
