@@ -1,0 +1,33 @@
+import java.util.*;
+class Solution {
+    public String frequencySort(String s) {
+        int n = s.length();
+
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char c : s.toCharArray()){
+            map.put(c,map.getOrDefault(c,0)+1);
+     }
+
+     List<Character> charList = new ArrayList<>(map.keySet());
+     charList.sort((a,b) -> map.get(b) - map.get(a));
+
+     StringBuilder sb = new StringBuilder();
+
+     for(char ch : charList){
+        int count = map.get(ch);
+        sb.append(String.valueOf(ch).repeat(count));
+     }
+
+        return sb.toString();
+    }
+}
+
+Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+Return the sorted string. If there are multiple answers, return any of them.
+
+Example 1:
+
+Input: s = "tree"
+Output: "eert"
+Explanation: 'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
