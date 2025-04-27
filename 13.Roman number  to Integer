@@ -1,0 +1,38 @@
+import java.util.*;
+public class Solution {
+    public static int romanToInt(String s) {
+
+        int res = 0;
+        HashMap<Character,Integer> mpp = new HashMap<>();
+    
+        mpp.put('I', 1);
+        mpp.put('V', 5);
+        mpp.put('X', 10);
+        mpp.put('L', 50);
+        mpp.put('C', 100);
+        mpp.put('D', 500);
+        mpp.put('M', 1000);
+
+        for(int i = 0; i < s.length();i++){
+            int val = mpp.get(s.charAt(i));
+          //if curr < next thern (res- val)
+            if((i+1) < s.length() && val < mpp.get(s.charAt(i+1))){
+                res -= val;
+            }else{
+                //else (res+val)
+                res += val;
+            }
+        }
+        return res;
+    }
+}
+
+You are given a string 's' that represents a Roman number. Convert the Roman number to an integer and return it.
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D, and M.
+
+Input: s = "III"
+Output: 3
+Explanation: III = 3.
+
+T.c => O(n)
+S>C => O(1)
