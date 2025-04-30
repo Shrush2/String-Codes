@@ -1,0 +1,21 @@
+class Solution {
+    public int findNumbers(int[] nums) {
+        
+        int count = 0;
+        int n = nums.length;
+        int len  = 0;
+
+       for(int dig : nums){
+         String str = String.valueOf(dig);
+          len = str.length();
+
+          if(len % 2 == 0){
+            count++;
+         }
+         }
+
+         
+
+       return count;
+    }
+}
