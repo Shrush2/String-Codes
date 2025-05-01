@@ -1,0 +1,57 @@
+------------------------------------ COUNT WORS IN STRING--------------------------------------
+
+import java.util.* ;
+import java.io.*; 
+import java.util.Scanner;
+class Solution {
+	
+    static int  countWords(String input) {
+
+        String arr[] = input.trim().split("\\s+");
+        return arr.length;
+    }
+    
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        int output = countWords(input);
+        System.out.println(output);
+		
+	}
+}
+Sample Input 1:
+Coding Ninjas!
+Sample Output 1:
+2
+
+For a given input string(str), find and return the total number of words present in it.
+It is assumed that two words will have only a single space in between. Also, there wouldn't 
+be any leading and trailing spaces in the given input string.
+
+
+----------------------FIND LENGTH OF LAST WORD IN STRING ------------------------------------------
+
+class Solution {
+    public int lengthOfLastWord(String s) {
+
+    int i = s.length() - 1;
+    int count = 0;
+    
+    while(i >= 0 && s.charAt(i) == ' '){
+        i--;
+    }
+
+    while(i >= 0 && s.charAt(i)!= ' '){
+        count++;
+        i--;
+    }
+        return count;
+    }
+}
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
