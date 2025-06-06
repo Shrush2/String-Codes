@@ -35,3 +35,6 @@ For Example :
 
 ()()()() is a valid parentheses.
 )()()( is not a valid parentheses.
+
+Time Complexity = O(Cn⋅2N)
+Space Complexity = O(Cn ⋅2N)
