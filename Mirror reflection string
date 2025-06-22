@@ -24,3 +24,34 @@ public class Solution {
 
 You are given a string S containing only uppercase English characters. Find whether S is the same as its reflection in the mirror.
 For Example, S = “AMAMA” is the same as its reflection in the mirror.
+
+
+
+
+2nd type ---------------------------------------------------------------------------------------
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static Boolean isReflectionEqual(String s) {
+
+        Set<Character> reflection  = new HashSet<>(Arrays.asList(
+            'A','T','I','O','U','V','W','X','Y','M','H'
+        ));
+
+        for(char ch : s.toCharArray()){
+            if(!reflection.contains(ch)){
+                return false;
+            }
+        }
+            int n = s.length();
+        for(int i = 0; i < n/2; i++){
+            if(s.charAt(i) != s.charAt(n- i -1)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+You are given a string S containing only uppercase English characters. Find whether S is the same as its reflection in the mirror.
+
+For Example, S = “AMAMA” is the same as its reflection in the mirror.
