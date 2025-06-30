@@ -1,0 +1,52 @@
+public class Solution {
+	public static String lookAndSaySequence(int n) {
+
+		if(n == 1) return "1";
+		String term = "1";
+
+		for(int i = 2; i <= n; i++){
+			int cnt = 1;
+			StringBuilder ans = new StringBuilder();
+
+			for(int j = 1; j < term.length(); j++){
+				if(term.charAt(j) == term.charAt(j-1)){
+					cnt++;
+				}else{
+					ans.append(cnt).append(term.charAt(j - 1));
+					cnt = 1;
+				}
+			}
+
+			ans.append(cnt).append(term.charAt(term.length() - 1));
+			term = ans.toString();
+
+		}
+		return term;
+	}  
+}
+
+The Look-And-Say sequence is a sequence of positive integers. The sequence is as follows:
+
+1, 11, 21, 1211, 111221, 312211, 13112221,...
+
+This sequence is constructed in the following way:
+
+The first number is 1.
+
+This is read as “One 1”. 
+Hence, the second number will be 11.
+
+The second number is read as “Two 1s”. 
+Hence, the third number will be 21.
+
+The third number is read as “One 2, One 1”. 
+Hence, the fourth number will be 1211. And so on.
+
+The fourth term is read as “One 1, One 2, Two 1s”.
+
+Hence, the fifth term will be 111221. And so on.
+Given an integer N, find the Nth term of the sequence.
+
+
+T.C => O(2^n)
+S.C => O(2^n)
