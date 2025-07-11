@@ -1,0 +1,41 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static String decrypt(String message, ArrayList<ArrayList<Integer>> operations) {
+
+		for(ArrayList<Integer> op : operations){
+
+		int direction = op.get(0);
+		int times = op.get(1);
+
+		if(direction == -1){
+		message = leftRotation(message,times);
+		}else if(direction == 1){
+			message = rightRotation(message,times);
+		}
+		}
+		return message;
+	}
+	public static String leftRotation(String message,int times){
+		int n = message.length();
+		times = times % n;
+		return message.substring(times) + message.substring(0,times);
+	}
+
+	public static String rightRotation(String message,int times){
+		int n = message.length();
+		times = times % n;
+		return message.substring(n - times) + message.substring(0,n - times);
+	}
+
+}
+
+You are given a string, 'MESSAGE'. The receiver of this ‘MESSAGE’ has a set of instructions on how to decrypt the message. In order to decrypt the message, we need to perform some rotation operations on the string.
+These rotations can either be left rotations or right rotations. The set of instructions contains information about which type of rotation is to be performed and how many times. Your task is to determine
+the decrypted message.
+
+T.C => O(N)
+S.C => O(N)
