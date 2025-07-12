@@ -1,0 +1,68 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static ArrayList<String> minRemovaltoMakeStringValid(String str) 
+	{
+		Queue<String> queue = new LinkedList<>();
+		Set<String> visited = new HashSet<>();
+
+		ArrayList<String> res = new ArrayList<>();
+
+		queue.add(str);
+		visited.add(str);
+		boolean found = false;
+
+		while(!queue.isEmpty()){
+			String curr = queue.poll();
+
+			if(isValid(curr)){
+				res.add(curr);
+				found = true;
+			}
+
+			if(found) continue;
+
+			for(int i = 0; i < curr.length(); i++){
+				char c = curr.charAt(i);
+				if(c != '(' && c != ')'){
+					continue;
+				}
+				String next = curr.substring(0,i) + curr.substring(i+1);
+				if(!visited.contains(next)){
+					queue.add(next);
+					visited.add(next);
+				}
+			}
+		}
+		return res;
+
+
+	}
+
+	public static Boolean isValid(String str){
+		int cnt = 0;
+
+		for(int ch : str.toCharArray()){
+			if(ch == '('){
+				cnt++;
+			}else if(ch == ')'){
+				cnt--;
+				if(cnt < 0)return false;
+			}
+		}
+					return cnt == 0;
+
+	}
+}
+
+Ninja has been given a string ‘STR’ containing ‘(‘ and ‘)’. ‘STR’ may also contain lower case alphabets. In order to make ‘STR’ valid Ninja can remove either ‘)’ or ‘(’ from ‘STR’.
+Here are some examples of valid ‘STR’ “((a))”, “(g)()”, “(())()”, "" (an empty string is also a valid string).
+Ninja wants to know all the possible valid strings that can be formed from ‘STR’ by minimum possible removals (possibly zero).
+Can you help Ninja to generate all valid strings from ‘STR’ by minimum removals?
+
+For Example :
+For the given ‘STR’ =  “()(()”, we can form a valid string “()()” by removing ‘(‘ at index 2 or 3.
+
+T.C => O(2^n)
+S.C => O(M * N)
