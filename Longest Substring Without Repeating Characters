@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static int uniqueSubstrings(String input) 
+    {
+		int n = input.length();
+		int left = 0,right = 0,maxlen = 0;
+		Set<Character> seen = new HashSet<>();
+
+		while(right < n){
+			char ch = input.charAt(right);
+			if(!seen.contains(ch)){
+			  seen.add(ch);
+			  maxlen = Math.max(maxlen,right - left + 1);
+			  right++;
+			}else{
+				seen.remove(input.charAt(left));
+				left++;
+			}
+		}
+		return maxlen;
+	}
+}
+
+Given a string input of length n, find the length of the longest substring without repeating characters i.e return a substring that does not have any repeating characters.
+Substring is the continuous sub-part of the string formed by removing zero or more characters from both ends.
+
+For input: "abcabcbb"
+The longest substring without repeating characters is "abc" → length = 3
+
+T.C => O(N)
+S.C = > O(MIN(N,26)) Because the alphabets are only 26 so the string given contains 26 char
