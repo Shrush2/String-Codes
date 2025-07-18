@@ -15,6 +15,23 @@ class Solution {
     }
 }
 
+----------------------------2nd approach---------------------
+import java.util.*;
+public class Solution {
+	
+	public static String reverseOrderWords(String str) {
+        int n = str.length();
+
+        String res[] =  str.trim().split("\\s+");
+        List<String> strlist = Arrays.asList(res);
+        Collections.reverse(strlist);
+
+        return String.join(" ",strlist);
+
+    }
+
+}
+
 Example 1:
 
 Input: s = "the sky is blue"
