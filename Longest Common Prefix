@@ -34,5 +34,5 @@ Output: ab
 Explanation:
 Answer is “ab”, as it is the longest prefix present in all the given strings.
 
-T.C => O(n lon + m)
+T.C => O(n log n + m)
 S.C => O(1)
