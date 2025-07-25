@@ -1,0 +1,46 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int stringMania(int n, int m, String str1, String str2) {
+
+		int minlen = Math.min(n,m);
+
+		for(int i = 0; i < minlen;i++){
+			if(str1.charAt(i) != str2.charAt(i)){
+				if(str1.charAt(i) > str2.charAt(i)){
+					return 1;
+
+				}else{
+					return -1;
+
+				}
+			}
+		}
+
+		if(n > m){
+			return 1;
+		}
+		if(m > n){
+			return -1;
+		}
+		return 0;
+	}
+}
+
+
+Rohit love strings. But he has many strings with him, and he is confused about which one he loves more. So he decided to come up with a scoring system for the strings. The scoring system took two strings as input, let's call them ‘STR1’ and ‘STR2’ of length ‘N’ and length ‘M’ respectively.
+The system will return ‘1’ if ‘STR1’ is better than ‘STR2’.
+The system will return ‘0’ if ‘STR1’ is the same as ‘STR2’.
+The system will return ‘-1’ if ‘STR2’ is better than ‘STR1’.
+To decide which string is better he followed the below steps.
+Let’s suppose there exists a index ‘i’ such that ‘0’ <= ‘i’ < ‘min(N,M)’ and for all ‘j<i’, ‘STR1[j]’ is equal to ‘STR2[j]’, and ‘STR1[i] != STR2[i]’.
+Then if ‘STR1[i]>STR2[i]’, ‘STR1’ is better otherwise if ‘STR2[i]>STR1[i]’, ‘STR2’ is better,
+And if there doesn’t exist any such ‘i’ then if ‘N>M’, ‘STR1’ is better,
+And if ‘N<M’, ‘STR2’ is better, and if ‘N’ is equal to ‘M’, both strings are the same.
+But Rohit has so many strings, so he doesn’t have time to go through all strings, So being his friend can you help him automate this process?.
+
+EXAMPLE :
+Input: ‘N’ = 3, ‘M’ = 4, ‘STR1’ = xyz, ‘STR2’ = abcd
+
+T.C => O(N)
+S.C => O(1)
