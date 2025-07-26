@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static String findShortestPalindrome(String str) {
+
+		int n = str.length();
+		String rev = new StringBuilder(str).reverse().toString();
+		String combined = str + "#" + rev;
+		int lps[] = computeLPS(combined);
+		int Addto = n - lps[combined.length() - 1];
+		String prefix = rev.substring(0,Addto);
+
+		return prefix + str;
+	}
+
+	public static int[] computeLPS(String s){
+		int n = s.length();
+		int len = 0;
+		int i = 1;
+		int lps[] = new int[n];
+
+		while(i < n){
+			if(s.charAt(i) == s.charAt(len)){
+				len++;
+				lps[i] = len;
+				i++;
+			}else{
+				if(len != 0){
+					len = lps[len - 1];
+				}else{
+					lps[i] = 0;
+					i++;
+				}
+			}
+		}
+		return lps;
+	}
+
+
+}
+
+
+You are given a string ‘STR’. Your task is to find the shortest palindrome that can be formed by adding characters in front of ‘STR’.
+For example:
+You are given ‘STR’ = “aabcd”. Then our answer will be “dcbaabcd”. We can form a palindrome by adding ‘d’, ‘c’, and ‘b’ in front of ‘STR’.
+
+TC => O(N)
+S.C => O(N)
