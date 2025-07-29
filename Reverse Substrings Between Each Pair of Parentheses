@@ -1,0 +1,36 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String reverseStringsInParentheses(String s, int n) {
+
+
+            Stack<StringBuilder> stack = new Stack<>();
+            stack.push(new StringBuilder());
+
+            for(char ch : s.toCharArray()){
+                if(ch == '('){
+                    stack.push(new StringBuilder());
+                }else if(ch == ')'){
+                    StringBuilder top = stack.pop();
+                    stack.peek().append(top.reverse());
+                }else{
+                    stack.peek().append(ch);
+                }
+            }
+            return stack.peek().toString();
+        }
+}
+
+You are given a string ‘S’ that consists of lower case English letters and brackets.
+Reverse the strings in each pair of matching parentheses, starting from the innermost one.
+Your result should not contain any brackets.
+
+Example :
+Suppose the given string ‘S’ is ‘((ng)ipm(ca))’ then the resultant reversed string on removing the parentheses here is ‘camping’ which can be done in the following steps:
+
+-> ((ng)ipm(ca))
+-> (gnipmac)
+-> camping
+
+T.C => O(N)
+S.C => O(N)
