@@ -1,0 +1,33 @@
+public class Solution {
+	public static String amazingStrings(String first, String second,String third) {
+		// Write your code here.
+
+		int freqgiv[] = new int[26];
+		int freqreq[] = new int[26];
+
+		for(char ch : (first + second).toCharArray()){
+			freqreq[ch - 'A']++;
+		}
+		for(char ch : third.toCharArray()){
+			freqgiv[ch - 'A']++;
+		}
+
+		for(int i = 0; i < 26;i++){
+			if(freqgiv[i] != freqreq[i]){
+				return "NO";
+			}
+		}
+		return "YES";
+	}
+}
+Shrey has just arrived in the city. When he entered the city, he was given two strings. Now, after arriving at his college, his professor gave him an extra string. To check his intelligence,
+his professor told him to check if the third string given to him has all the characters of the first and second strings in any order. Help Shrey before his professor scolds him. He has to answer “YES” 
+if all characters are present else “NO”.
+
+Example: ‘HELLO’ and ‘SHREY’ are two initial strings, and his professor gave him ’HLOHEELSRY’. So, here all the characters are present, so he has to say “YES”.
+
+Note: The strings contain only uppercase Latin characters.
+
+T.C => O(N + M+ K)
+S.C => O(N)
+
