@@ -1,0 +1,37 @@
+class Solution {
+    public String convertToTitle(int columnNumber) {
+
+        String res = "";
+        while(columnNumber > 0){
+            columnNumber--;
+            char ch = (char)((columnNumber % 26) + 'A');
+            res += ch;
+            columnNumber = columnNumber / 26;
+        }
+
+        String str = new StringBuilder(res).reverse().toString();
+        return str;
+        
+        
+    }
+}
+
+Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+
+Input: columnNumber = 1
+Output: "A"
+
+T.C =>O(log base 26 (N)) Each division by 26 reduces n, so you have at most log₍₂₆₎N iterations.
+
+S.C => O(log base 26 (N)) We use a StringBuilder to store the characters, which takes space proportional to the number of digits in base-26.
