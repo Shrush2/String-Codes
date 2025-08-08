@@ -1,0 +1,46 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> findAnagramsIndices(String str, String ptn, int n, int m) {
+
+		ArrayList<Integer> list = new ArrayList<>();
+		int freqS[] = new int[26];
+		int freqQ[] = new int[26];
+
+		if(m > n)return list;
+
+		for(int i = 0; i < m;i++){
+			freqQ[ptn.charAt(i) - 'A']++;
+		}
+
+		for(int i = 0; i < m;i++){
+			freqS[str.charAt(i) - 'A']++;
+		}
+
+		if(Arrays.equals(freqQ,freqS)){
+			list.add(0);
+		}
+
+		for(int i = m; i < n;i++){
+			freqS[str.charAt(i-m)- 'A']--;
+			freqS[str.charAt(i)- 'A']++;
+
+			if(Arrays.equals(freqS,freqQ)){
+				list.add(i - m+1);
+			}
+		}
+		return list;
+	}
+}
+
+
+Given two strings ‘STR’ and ‘PTR’. Find all the starting indices of ‘PTR’ anagram substring in ‘STR’. Two strings are anagram if and only if one string can 
+be converted into another string by rearranging the character.
+
+For example, ‘ABCD’ and ‘ACBD’ are two anagram strings because ‘ACBD’ can be converted into ‘ABCD’ by rearranging the ‘B’ and ‘C’. ’ABA’ and ‘ABB’ are not anagram because we can’t convert ‘ABA’ to 
+‘ABB’ by rearranging the characters of particular strings.
+
+‘ABACD’ and ‘CABAD’ are anagram because ‘ABACD’ can be converted into ‘CABAD’ by rearranging the first ‘A’ with ‘C’ and second ‘A’ with ‘B’.
+
+T.C => O(n)
+S.C => O(1)
