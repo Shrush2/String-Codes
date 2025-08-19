@@ -1,0 +1,32 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<String> divideString(String word, int n) {
+        // Write your code here
+        int len = word.length();
+        ArrayList<String> res = new ArrayList<>();
+
+        if(len % n != 0){
+            return res;
+        }
+
+        int partsize = len/n;
+        for(int i = 0; i < len;i += partsize){
+            res.add(word.substring(i,i+partsize));
+        }
+        return res;
+    }
+}
+
+Ninja has been given a string ‘WORD’ containing lower case alphabets. Ninja wants to know all the strings by dividing ‘WORD’ into ‘N’ strings of equal length.
+For Example:
+
+For ‘WORD’ =  “abcdefgh”, ‘N’ = 2. Following are the 2 strings of length 4.
+
+“abcd”
+“efgh”
+
+T.C => O(N)
+S.C => O(N)
