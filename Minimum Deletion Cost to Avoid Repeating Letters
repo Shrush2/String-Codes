@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int minimumCost(int n, String s, int[] cost) {
+		// Write your code here.
+
+        char fLetter = s.charAt(0);
+        int delValue = cost[0];
+        int k = 0;
+        for(int i = 1; i < n;i++){
+            if(fLetter == s.charAt(i)){
+            delValue = Math.min(delValue,cost[i]);
+            fLetter = s.charAt(i);
+            }else{
+                continue;
+            }
+        }
+        return delValue;
+	}
+}
+
+
+Ninja has given a string 'S' of lowercase characters of size 'N'. He also has provided an array 'COST' where 'COST[i]' refers to the Cost of deleting the ‘i’th character in the string.
+Ninja doesn't like a string with the same adjacent characters, so he asked you to help him transform the given string into the string with no adjacent repetitive characters by deleting some characters in it.
+Cost of deleting some characters is the sum of costs of individual deletion of characters at every position. Your task is to find the minimum cost needed to transform the string with no adjacent repetitive characters.
+
+Example:
+Input: 'S' = "babbc", 'COST' = [1, 2, 3, 4, 5] 
+Output: 3
+
+
+T.C => O(n)
+S.C => O(1)
