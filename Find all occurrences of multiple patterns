@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[][] findOccurrences(String S, String[] arr) {
+        // Write your code here.
+
+        int Slength = S.length();
+        List<List<Integer>> res = new ArrayList<>();
+
+        for(String word : arr){
+        List<Integer> indices = new ArrayList<>();
+            int wordlen  = word.length();
+        
+        for(int i = 0; i <= Slength - wordlen; i++){
+            if(S.substring(i,i + wordlen).equals(word)){
+                indices.add(i);
+            }
+        }
+        res.add(indices);
+
+        }
+
+        int [][] allres = new int[res.size()][];
+        for(int i = 0; i < res.size(); i++){
+            List<Integer> row = res.get(i);
+            allres[i] = row.stream().mapToInt(Integer::intValue).toArray();
+        }
+        return allres;
+        
+    }
+}
+
+
+You are given an array 'ARR' of strings having 'N' strings. You are also given a string 'S'. Your task is to find all the occurrences of each string of the array 'ARR' as substrings in the string 'S'.
+
+For example:
+
+Consider the array 'ARR' = { "ab", "aa" } and the string 'S' = "aabab". 
+The substring "ab" is present at index 1 and index 3 of the String 'S' and the substring "aa" is present at index 0 of the String S.
+
+
+T.C => O(N . |S| ^2)
+S.C = O(N. |S|)
