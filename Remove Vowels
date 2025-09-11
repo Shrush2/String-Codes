@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static String removeVowels(String str) {
+
+		StringBuilder res = new StringBuilder();
+		Set<Character> vowels = new HashSet<>(Arrays.asList(
+			'a','e','i','o','u','A','E','I','O','U'
+		));
+
+		for(char ch : str.toCharArray()){
+			if(vowels.contains(ch)){
+				continue;
+			}else{
+				res.append(ch);
+			}
+		}
+		return res.toString();
+	}
+}
+
+You are given a string STR of length N. Your task is to remove all the vowels present in that string and print the modified string.
+English alphabets ‘a’, ‘e’, ‘i’, ‘o’, ‘u’ are termed as vowels. All other alphabets are called consonants.
+Note: You have to only remove vowels from the string. There will be no change in the relative position of all other alphabets.
+
+For example:
+(i)  If the input string is 'CodeGeek', the output should be CdGk after removing ‘o’ and ‘e’.
+
+(ii) If the input string is 'Odinson', the output should be 'dnsn' after removing ‘o’ and ‘i’. 
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 ≤ T ≤ 100
+1 ≤ N ≤ 10^4
+
+STR may contain alphabets from 'a' to 'z' or 'A' to 'Z' and blank spaces.
