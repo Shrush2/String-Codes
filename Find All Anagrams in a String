@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class Solution {
+    public static ArrayList<Integer> findAnagramsIndices(String str, int n, String ptr, int m){
+        ArrayList<Integer> res = new ArrayList<>();
+
+        if(m > n) return res;
+
+        int targetfreq[] = new int[26];
+        int windowfreq[] = new int[26];
+
+        for(int i = 0; i < m;i++){
+            targetfreq[ptr.charAt(i) - 'A']++;
+            windowfreq[str.charAt(i) - 'A']++;
+        }
+
+        if(Arrays.equals(targetfreq,windowfreq)){
+            res.add(0);
+         }
+
+         for(int i = m ; i < n;i++){
+             windowfreq[str.charAt(i-m) - 'A']--;
+             windowfreq[str.charAt(i) - 'A']++;
+
+        if(Arrays.equals(targetfreq,windowfreq)){
+            res.add(i-m+1);
+         }
+
+        }
+         return res;
+    }
+}
+
+You have been given a string STR and a non-empty string PTR. Your task is to find all the starting indices of PTR’s anagram in STR.
+An anagram of a string is another string which contains the same characters and is obtained by rearranging the characters.
+For example: ‘SILENT’ and ‘LISTEN’ are anagrams of each other. ‘ABA’ and ‘ABB’ are not anagram because we can’t convert ‘ABA’ to ‘ABB’ by rearranging the characters of particular strings.
+
+Note:
+1. Both STR and PTR consist of English uppercase letters.
+2. Length of string 'STR' will always be greater than or equal to the length of string ‘PTR’.
+3. In case, there is no anagram substring, then return an empty sequence.
+4. In case of more than one anagrams, return the indices in increasing order.
+
+
+T.C => O(N)
+S.C => O(N)
