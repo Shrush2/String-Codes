@@ -1,0 +1,41 @@
+class Solution {
+    public int canBeTypedWords(String text, String brokenLetters) {
+
+        String parts[] =  text.split("\\s+");
+        int cnt = 0;
+        
+        for(String word : parts){
+            boolean cantype = true;
+
+            for(char broken : brokenLetters.toCharArray()){
+                if(word.indexOf(broken) != -1){
+                    cantype = false;
+                    break;
+                }
+            }
+            if(cantype){
+                cnt++;;
+            }
+        }
+
+        return cnt;
+
+    }
+}
+
+There is a malfunctioning keyboard where some letter keys do not work. All other keys on the keyboard work properly.
+Given a string text of words separated by a single space (no leading or trailing spaces) and a string brokenLetters of all distinct letter keys that are broken,
+return the number of words in text you can fully type using this keyboard.
+
+ 
+
+Example 1:
+
+Input: text = "hello world", brokenLetters = "ad"
+Output: 1
+Explanation: We cannot type "world" because the 'd' key is broken.
+
+indexOf is used to detect if a  letter exists in the word or not .
+
+T.C => O(N)
+S.C = O(1)
