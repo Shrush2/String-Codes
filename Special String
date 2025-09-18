@@ -1,0 +1,100 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static String specialString(String s, int n, int p) {
+		// Write your code here.
+
+		char arr[] = s.toCharArray();
+		for(int i = n-1; i >= 0; i--){
+			for(char next = (char)(arr[i]+1); next < (char)('a'+p); next++){
+				if(isValid(arr,i,next)){
+					arr[i] = next;
+
+
+					for(int j = i+1; j < n;j++){
+						for(char ch = 'a' ; ch < (char)('a'+p);ch++){
+							if(isValid(arr,j,ch)){
+								arr[j] = ch;
+								break;
+							}
+						}
+					}
+					return new String(arr);
+				}
+			}
+			
+		}
+
+		return "NO";
+	}
+
+	public static boolean isValid(char arr[],int i,char ch){
+			if(i > 0 && arr[i-1] == ch)return false;
+			if(i > 1 && arr[i-2] == ch)return false;
+
+			return true;
+
+		}
+}
+
+A string ‘S’ is said to be special if each of its characters is one of the first ‘P’ letters of the English alphabet and ‘S’ doesn't contain any palindrome contiguous substring of length 2 or more. You will be given a
+special string ‘S’ of length ‘N’, find the lexicographically next special string of the same length, or else state that such string does not exist. Print the output string if it exists, otherwise, print "NO" 
+(without quotes).
+A string “s1” is a substring of another string “s2” if “s2” contains the same characters as in “s1”, in the same order and in a continuous fashion also.
+
+Example: Given a string “cba” and ‘P’ equals 3. So, the next strings which are lexicographically bigger than string ‘S’ are “cbb”, “cbc”, “cca”, “ccb” and “ccc” of size 3. But all of them have a palindrome 
+substring of the size at least 2. So, we will return “NO” as output. If the given string is “cbd” and ‘P’ equals 4 then the next string will be “cda” and it is special. So, we can return an output here.
+
+
+N = 4, P = 4  
+S = "abcd"
+Allowed letters = {a, b, c, d}
+
+Step 1: Start from the end
+
+We loop i = n-1 → 3 (character 'd').
+
+Try to increment 'd':
+
+'d' + 1 = 'e' → but loop condition is next < 'a' + p = 'a' + 4 = 'e'.
+
+Since next == 'e' is not < 'e', no valid char.
+So index 3 fails.
+
+Step 2: Move to index 2 ('c')
+
+Try to increment 'c':
+
+'c' + 1 = 'd'.
+
+'d' < 'e' ✅ allowed.
+
+Check isValid:
+
+At i=2: previous chars are "ab".
+
+'b' != 'd' (good).
+
+No "aba" pattern (good).
+So we can set arr[2] = 'd'.
+
+Now the string looks like:
+👉 "abd?"
+
+Step 3: Fill remaining positions (j = 3)
+
+We try smallest allowed chars (a…d):
+
+Try 'a':
+
+At j=3: previous = "d", two before = "b".
+
+'d' != 'a' ✅, 'b' != 'a' ✅.
+So 'a' is valid.
+
+Now the string is:
+👉 "abda"
+
+
+T.C => O(n * O(p + n*p))
+SC => O(N)
