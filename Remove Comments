@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList <String> removeComments(ArrayList<String> arr) {
+		// Write your code here.
+		ArrayList<String> res = new ArrayList<>();
+		StringBuilder newstr = new StringBuilder();
+		boolean inBlock = false;
+
+		for(String line : arr){
+			int i = 0;
+			char chars[] = line.toCharArray();
+			if(!inBlock) newstr.setLength(0);
+
+			while(i < chars.length){
+			
+			if(!inBlock && i+1 < chars.length && chars[i] == '/' && chars[i+1] == '*'){
+				inBlock = true;
+				i += 2;
+			}else if(inBlock && i+1 < chars.length && chars[i] == '*' && chars[i+1] == '/'){
+				inBlock = false;
+				i += 2;
+			}else if(!inBlock && i+1 < chars.length && chars[i] == '/' && chars[i+1] == '/'){
+				break;
+			}else if(!inBlock){
+				newstr.append(chars[i]);
+				i++;
+			}else{
+				i++;
+			}
+		}
+
+		if(!inBlock && newstr.length() > 0){
+			res.add(newstr.toString());
+		}
+
+
+		}
+		return res;
+			}
+}
+
+You are given a text in the form of an array of strings. A string present at the (i+1)th index, can be assumed to be separated from the string at the ith index, by a newline character (i.e. ‘\n’).
+In the given text, we have two types of comments: line comments and block comments.
+The string “//” denotes the starting of a line comment, which represents that the rest of the characters to the right of this string and present in the same line, should be ignored.
+And the strings “/” and “/” denote the starting and ending points of a block comment, which represents that all the characters between these two strings must be ignored. Note that block comments 
+can span across multiple lines whereas line comments end at the same line.
+Your task is to remove the comments from the given text and print the text in the same format.
+
+
+T.C = O(n)
+S.C => O(n)
