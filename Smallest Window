@@ -53,8 +53,9 @@ public class Solution {
 
 You are given two strings S and X containing random characters. Your task is to find the smallest substring in S which contains all the characters present in X.
 Example:
-Let S = “abdd” and X = “bd”.
-
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 The windows in S which contain all the characters in X are: 'abdd', 'abd', 'bdd', 'bd'. 
 Out of these, the smallest substring in S which contains all the characters present in X is 'bd'. 
 All the other substring have a length larger than 'bd'.
