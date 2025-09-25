@@ -1,0 +1,63 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+    
+    public static String smallestWindow(String s, String x) {
+
+      if(s.length() < x.length()){
+        return "";
+      }
+        
+    int need[] = new int[256];
+    int window[] = new int[256];
+
+    for(char ch : x.toCharArray()){
+      need[ch]++;
+    }
+
+    int required = x.length();
+    int start = 0;
+    int l = 0;
+    int minLen = Integer.MAX_VALUE;
+
+    for(int r = 0; r < s.length(); r++){
+      char rc = s.charAt(r);
+      if(need[rc] > 0){
+        if(window[rc] < need[rc]){
+          required--;
+        }
+      }
+      window[rc]++;
+
+      while(required == 0){
+        if(r-l+1 < minLen){
+          minLen = r-l+1;
+          start = l;
+        } 
+        char lc = s.charAt(l);
+        window[lc]--;
+
+        if(need[lc] > 0 && window[lc] < need[lc]){
+          required++;
+        }
+
+        l++;
+      }
+    }
+    return minLen == Integer.MAX_VALUE ? "" : s.substring(start,start+minLen);
+
+    }
+
+}
+
+You are given two strings S and X containing random characters. Your task is to find the smallest substring in S which contains all the characters present in X.
+Example:
+Let S = “abdd” and X = “bd”.
+
+The windows in S which contain all the characters in X are: 'abdd', 'abd', 'bdd', 'bd'. 
+Out of these, the smallest substring in S which contains all the characters present in X is 'bd'. 
+All the other substring have a length larger than 'bd'.
+
+T.C => O([s] + [X])
+S.C => O(1)
