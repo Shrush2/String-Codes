@@ -1,0 +1,58 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int slotScore(String original, String guess) {
+		// Write your code here.
+		int freq[] = new int[26];
+		int n = original.length();
+		int perfecthit = 0;
+		int psuedohit = 0;
+
+		for(int i= 0; i < n;i++){
+			if(original.charAt(i) == guess.charAt(i)){
+				perfecthit += 2;
+			}else{
+				freq[original.charAt(i) - 'A']++;
+			}
+		}
+
+		for(int i = 0; i < n; i++){
+			if(original.charAt(i) != guess.charAt(i)){
+				int g = guess.charAt(i) - 'A';
+
+				if(freq[g] > 0){
+					psuedohit++;
+					freq[g]--;
+				}
+			}
+		}
+
+		return psuedohit + perfecthit;
+	}
+}
+
+
+
+You’re given a slot machine with four slots where each slot will contain the color Red(R), Yellow(Y), Green(G), Blue(B), respectively. You don’t know the colors of this slot beforehand. You have to guess the colors. When you guess the correct color for the correct slot, you get a perfect hit, and you get 2 points, but if you guess a color that exists in the machine but is in the wrong slot, you get a pseudo hit, and you get 1 point.
+You’re given the original string representing the slots’ colors and the guess string, and your task is to calculate and return the total number of points you have scored.
+Note:
+A slot that has been counted as a perfect hit can never count as a pseudo-hit.
+
+Example:
+Original String = “RGYB” and Guess String = “YGRR”.
+The second slot of both the guess and original matches, hence it’s a perfect hit. The guess string contains yellow, which is also present in the original string but not at the same slot as the guess slot. Hence it’s a pseudo hit. The guess string also contains two red slots, but the original string contains only one red which is also not at the same slot as the guess string; hence it is also a pseudo hit. Therefore total points will be 2+1+1= 4.
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1
+1
+RGBY
+GGRR
+Sample Output 1:
+3
+Explanation of Sample Input 1:
+
+The second slot of both the string matches. Therefore, it is a perfect hit, and we get 2 points. Our guess string contains the color Red ‘R’ two times, which is also present in the original string but only one time, 
+and it is not in the same slot as the guess slot; hence we get a pseudo hit we get 1 point. Therefore total points will be 2+1=3.
+
+
+TC => O(N)
+S.C => O(N)
