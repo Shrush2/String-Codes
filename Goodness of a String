@@ -1,0 +1,47 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int goodnessOfString(String s) {
+		// Write your code here.
+		int depth = 0;
+		int mod = 1000000007;
+		long sum = 0;
+
+		for(int i = 0 ; i < s.length(); i++){
+			char ch = s.charAt(i);
+
+			if(ch == '['){
+				depth++;
+			}else if(ch == ']'){
+				depth--;
+			}else if(Character.isDigit(ch)){
+				int num  = 0;
+				while(i < s.length() && Character.isDigit(s.charAt(i))){
+					num = num * 10 + (s.charAt(i) - '0');
+					i++;
+				}
+				i--;
+				sum = (sum + (long) num * depth) % mod;
+			}
+		}
+		return (int)sum;
+	}
+}
+
+
+You are provided with a string ‘S’ which indicates the nested list. For example: “[1, [2, 3], [4, [5, 6] ] ]”. Each number present in the list has some depth. The depth of a particular number is the number of nested lists
+in which it is present. Consider the previous example in which the number ‘1’ is at depth 1, numbers ‘2’, ‘3’, and ‘4’ are at depth 2, and numbers ‘5’ and ‘6’ are at depth 3.
+You have to find the goodness of the given string/nested list. The goodness of a string is the sum of the product of depths and elements present in the string.
+
+For Example:
+S = “[1, [2, 3], [4, [5, 6] ] ]”
+Total depth  = 1*1 + 2*2 + 3*2 + 4*2 + 5*3 + 6*3 = 52
+Note:
+
+1. The given string may be empty. 
+2. The string will not contain any white spaces. 
+3. You have to take the modulo with 10 ^ 9 + 7 as the answer may be very large.
+
+
+T.C => O(n)
+S.C => O(1)
