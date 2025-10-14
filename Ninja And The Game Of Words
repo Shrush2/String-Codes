@@ -1,0 +1,29 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> getFrequency(String str, ArrayList<String> words, int n) {
+		// Write your code here.
+
+		Map<String,Integer> freq = new HashMap<>();
+		ArrayList<Integer> res = new ArrayList<>();
+
+		for(String w : str.trim().split("\\s+")){
+			freq.put(w,freq.getOrDefault(w,0)+1);
+		}
+
+		for(String w : words){
+			res.add(freq.getOrDefault(w.trim(),0));
+		}
+		return res;
+	}
+}
+
+Ninja and his friend playing a game in which his friend gave him a string ‘STR’ that can contain spaces and a List/Array ‘WORDS’ which is of type string containing ‘N’ strings of words. Ninja’s
+task is to count the occurrences of all the words in ‘STR’.
+For Example:
+
+‘STR’ = “i am a Ninja”, ‘N’ = 3 and ‘WORDS[]’ = [“Ninja”,”a”,”am”]. Then the output should be [1,1,1]. Because the occurrence of “Ninja” in ‘STR’ is 1 and the occurrence of “a” in ‘STR’ is 1.
+Similarly occurrence of “am” is 1.
+
+T.C => O(N + L)
+S.C => O(N)
