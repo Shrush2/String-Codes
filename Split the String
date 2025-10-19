@@ -1,0 +1,51 @@
+import java.util.*;
+public class Solution {
+	public static int splitString(String s) {
+		// Write your code here.
+		int n = s.length();
+		Set<Character> set = new HashSet<>();
+		int leftunique[] = new int[n];
+		int rightunique[] = new int[n];
+
+		for(int i = 0; i < n; i++){
+			set.add(s.charAt(i));
+			leftunique[i] = set.size();
+		}
+
+		set.clear();
+
+		for(int i = n-1; i >= 0; i--){
+			set.add(s.charAt(i));
+			rightunique[i] = set.size();
+		}
+		
+		int cnt = 0;
+		for(int i = 0; i < n-1; i++){
+			if(leftunique[i] == rightunique[i+1]){
+				cnt++;
+			}
+
+		}
+		return cnt;
+
+	}
+}
+
+
+You are given a string ‘S’ consisting of lower-case English alphabets, find the number of good splits.
+Splitting a string ‘S’ into two non-empty strings ‘X’ and ‘Y’ is called good if the number of unique characters in strings ‘X’ and ‘Y’ is equal.
+
+For Example :
+If string S is equal to “abadaa”.
+
+Then S can be split in the following ways:
+X = “a” and Y = “badaa”, string X has 1 unique character and Y has 3 unique characters.
+X = “ab” and Y = “adaa”, string X has 2 unique characters and Y has 2 unique characters.[GOOD SPLIT]
+X = “aba” and Y = “daa”, string X has 2 unique characters and Y has 2 unique characters.[GOOD SPLIT]
+X = “abad” and Y = “aa”, string X has 3 unique characters and Y has 1 unique character.
+X = “abada” and Y = “a”, string X has 3 unique characters and Y has 1 unique character.
+Therefore we will return value 2 as we are able to find 2 good splits.
+
+
+T.C => O(N)
+S.C => O(N)
