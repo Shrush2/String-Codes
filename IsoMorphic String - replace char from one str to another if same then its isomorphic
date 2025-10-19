@@ -49,24 +49,51 @@ false
 
 
 ---------------------isonmorphic string coding ninjas-------------------------------
-import java.util.* ;
-import java.io.*; 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Solution {
-    public static ArrayList<String> divideString(String word, int n) {
-        // Write your code here
-    ArrayList<String> res = new ArrayList<>();
-        int len = word.length();
-        if(len % n != 0){
-            return res;
+    public static boolean areIsomorphic(String str1, String str2) {
+        // Write your code here.
+        
+        Map<Character,Character> map1 = new HashMap<>();
+        Map<Character,Character> map2 = new HashMap<>();
+
+        if(str1.length() != str2.length()){
+            return false;
         }
 
-        int partlen = (len / n);
-        for(int i = 0; i < len; i += partlen){
-            String part = word.substring(i,i+partlen);
-            res.add(part);
+        for(int i = 0; i < str1.length(); i++){
+            char c1 = str1.charAt(i);
+            char c2 = str2.charAt(i);
+
+            if(map1.containsKey(c1)){
+                if(map1.get(c1) != c2){
+                    return false;
+                }
+            } else{
+                    map1.put(c1,c2);
+                }
+
+            if(map2.containsKey(c2)){
+                if(map2.get(c2) != c1){
+                    return false;
+                }
+            } else{
+                    map2.put(c2,c1);
+                }
         }
-        return res;
+
+        return true;
+        
     }
 }
+
+You have been given two strings, 'str1' and 'str2'.
+Your task is to return true if the given two strings are isomorphic to each other, else return false.Note :
+Two strings are isomorphic if a one-to-one mapping is possible for every character of the first string ‘str1’ to every character of the second string ‘str2’ while preserving the order of the characters.
+
+All occurrences of every character in the first string ‘str1’ should map to the same character in the second string, ‘str2’.
+For example :
+If str1 = “aab” and str2 = “xxy” then the output will be 1. ‘a’ maps to ‘x’ and ‘b’ maps to ‘y’.
+
+If str1 = “aab” and str2 = “xyz” then the output will be 0. There are two different characters in 'str1', while there are three different characters in 'str2'. So there won't be one to one mapping between 'str1' and 'str2'.
