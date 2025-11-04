@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean isPeriodic(String s) {
+        // Write your code here.
+        StringBuilder str = new StringBuilder(s);
+        str.append(s);
+        int n = str.length();
+
+        str.deleteCharAt(0);
+        str.deleteCharAt(str.length() - 1);
+
+        String newStr = str.toString();
+        if(newStr.contains(s)){
+            return true;
+        }
+
+        return false;
+    }
+}
+
+Given a string ‘S’ find whether the given string is periodic or not.
+A string is said to be periodic if it repeats itself after a certain number of characters and the period of repetition is less than the size of the string.
+For example: Let ‘S’ be “ababab” we can clearly see that this string is periodic as ‘ab’ is repeated 3 times to make the string ‘S’.'
+
+Test Case 1:
+aabbaaabba
+In the first test case, we can clearly see that the string has a repeating string ‘x’ 6 times. So we return true
+
+T.C => O(n)
+S.C => O(n)
