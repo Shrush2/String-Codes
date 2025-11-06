@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution 
+{
+    public static int countNumberOfPalindromeWords(String s) 
+    {
+        String parts[] = s.split("\\s+");
+        int cnt = 0;
+
+        for(String str : parts){
+            
+            // Remove non-alphabet characters (punctuation, etc.)
+            str = str.replaceAll("[^a-zA-Z]", "");
+
+            // Skip empty strings
+            if(str.length() == 0) continue;
+
+            // Convert to lowercase for case-insensitive compare
+            str = str.toLowerCase();
+
+            if(isPallindrome(str)){
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    public static boolean isPallindrome(String str){
+        int l = 0, r = str.length() - 1;
+
+        while(l < r){
+            if(str.charAt(l) != str.charAt(r)){
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+}
+
+
+Problem statement
+You are given a string S of words. Your task is to find the number of palindrome words in the given string S. A word is called palindrome, if it reads the same backwards as forwards.
+Note:
+Words are separated by one or more whitespace characters.
+For Example:
+For the given string “Madam oyo cat”, “Madam”, and “oyo” are the palindrome words 
+output :- 2 (madam,oyo)
+
+
+T.C => O(N * K)
+S.C => O(N * K)
