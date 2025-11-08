@@ -1,0 +1,185 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+    public static List<String> reOrderSentences(String[] sentences) {
+        // Write your code here!
+        List<String[]> letters = new ArrayList<>();
+        List<String> numbers = new ArrayList<>();
+
+        for(String s : sentences){
+        String parts[] = s.split(" ");
+        String identifier = parts[0];
+        String rest = s.substring(identifier.length()).trim();
+
+        if(parts[1].matches("[0-9]+")){
+            numbers.add(s);
+        }else{
+            letters.add(new String[]{identifier,rest,s});
+        }
+        }
+        Collections.sort(letters,(a,b) -> {
+            int cmp = a[1].compareTo(b[1]);
+            if(cmp == 0) return a[0].compareTo(b[0]);
+            return cmp;
+        });
+
+
+        List<String> result = new ArrayList<>();
+        for(String[] arr : letters) result.add(arr[2]);
+        result.addAll(numbers);
+
+        return result;
+    }
+
+}
+
+
+You are given an array of ‘N’ sentences. Each sentence is a space-delimited string of words. The first word in each sentence is an alphanumeric identifier. Then, at least one of the following conditions will hold true:
+
+1. After identifier, each word will consist only of lowercase English letters
+2. After the identifier, each word will consist only of numbers.
+We will call these two types of sentences, letter – sentence and number– sentence. It is guaranteed that each sentence has at least one word after its identifier. Your task is to sort these sentences such that the following two conditions will hold.
+
+1. All letter - sentences must come before number- sentences.
+2. The letter - sentences must be ordered lexicographically ignoring identifiers. The identifier will be used in case of ties.
+3. The number– sentence must be put in their original order of occurrence. 
+
+
+input :- 
+d1 2 3
+love8 coding world
+a1 coding ninjas
+
+Step 1: Create two lists
+letters = []
+numbers = []
+
+Step 2: Process Each Sentence One-by-One
+Sentence 1: "d1 2 3"
+
+Split:
+
+parts = ["d1", "2", "3"]
+identifier = "d1"
+rest = sentence after "d1" = "2 3"
+
+
+Check second word:
+
+parts[1] = "2"
+"2" is only numbers → number-sentence
+
+
+So:
+
+numbers = ["d1 2 3"]
+letters = []
+
+Sentence 2: "love8 coding world"
+
+Split:
+
+parts = ["love8", "coding", "world"]
+identifier = "love8"
+rest = "coding world"
+
+
+Check second word:
+
+parts[1] = "coding"
+"coding" is letters → letter-sentence
+
+
+So we store as:
+
+letters.add(["love8", "coding world", "love8 coding world"])
+
+
+Now:
+
+letters = [
+   ["love8", "coding world", "love8 coding world"]
+]
+numbers = ["d1 2 3"]
+
+Sentence 3: "a1 coding ninjas"
+
+Split:
+
+parts = ["a1", "coding", "ninjas"]
+identifier = "a1"
+rest = "coding ninjas"
+
+
+Check second word:
+
+"coding" → letters → letter-sentence
+
+
+Store:
+
+letters.add(["a1", "coding ninjas", "a1 coding ninjas"])
+
+
+Now:
+
+letters = [
+   ["love8", "coding world", "love8 coding world"],
+   ["a1", "coding ninjas", "a1 coding ninjas"]
+]
+
+numbers = ["d1 2 3"]
+
+Step 3: Sort the letter-sentences
+
+We sort based only on rest first:
+
+Compare:
+
+"coding world"  vs  "coding ninjas"
+
+
+Alphabetical comparison (compareTo):
+
+"coding ninjas" comes before "coding world"
+because at the first differing word:
+
+ninjas < world
+
+
+So after sorting:
+
+letters = [
+   ["a1", "coding ninjas", "a1 coding ninjas"],
+   ["love8", "coding world", "love8 coding world"]
+]
+
+Step 4: Combine Results
+
+First take sorted letter sentences (take original full string, index [2]):
+
+result = [
+  "a1 coding ninjas",
+  "love8 coding world"
+]
+
+
+Then append number sentences as they were:
+
+result = [
+  "a1 coding ninjas",
+  "love8 coding world",
+  "d1 2 3"
+]
+
+✅ Final Output:
+a1 coding ninjas
+love8 coding world
+d1 2 3
+
+
+T.C => O(N × L × log N)
+S.C => O(N × L)
+
+
