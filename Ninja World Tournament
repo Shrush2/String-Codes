@@ -1,0 +1,66 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int calculateScore(ArrayList<String> matchResult, int n) {
+		// Write your code here.
+
+		Stack<Integer> stack = new Stack<>();
+
+		for(int i = 0; i < n; i++){
+			String s = matchResult.get(i);
+
+			if(s.matches("-?\\d+")){
+				stack.push(Integer.parseInt(s));
+			}
+			else if(s.equals("C")){
+				if(!stack.isEmpty()){
+					stack.pop();
+				}
+			}
+			else if(s.equals("D")){
+				if(!stack.isEmpty()){
+					stack.push(stack.peek() * 2);
+				}
+			}
+			else if(s.equals("+")){
+				int a = stack.pop();
+				int b = stack.peek();
+				stack.push(a);
+				stack.push(a+b);
+			}
+
+		}
+		int sum = 0;
+		for(int score : stack){
+			sum += score;
+		}
+		return sum;
+	}
+}
+
+Ninja was feeling bored during the lockdown. So, he decided to watch the Ninja World Tournament. The tournament consists of several matches, where the scores of past matches may affect future matches’ scores.
+
+At the beginning of the match, every player starts with an empty track record. Ninja wants to calculate the final score for a player. So, given a list of strings, ‘MATCHRESULT’, where ‘MATCHRESULT[ i ]’ is the ‘i’th operation Ninja must apply to the track record and is one of the following:
+
+1) An integer “A”: Introduce a new score of ‘A’ on the track record.
+2) "+": Introduce a new score on the track record that is the sum of the previous two scores.
+3) "C": Nullify the previous score, removing it from the track record.
+4) "D": Introduce a new score on the track record that is double the previous score.
+Ninja deduced that this could be easily solved using programming. So, he needs your help to calculate the sum of all the scores present in the track record.
+
+Note:
+It is guaranteed there will always be a previous score before the “C” and “D” operations and two previous scores before the “+” operation.
+
+Str = "2 3 + D C"
+Explanation of Sample Output 1:
+Test Case 1 :  
+Given MATCHRESULT = {“2”, “3”, “+”, “D”, “C”}. Initially, TRACKRECORD = {}.
+For “2”, Introducing 2 on the ‘TRACKRECORD’. Therefore, TRACKRECORD = {2}.
+For “3”, Introducing 3 on the ‘TRACKRECORD’. Therefore, TRACKRECORD = {2, 3}.
+For “+”, Introducing the sum of 2 and 3, i.e., 5 on the ‘TRACKRECORD’. Therefore, TRACKRECORD = {2, 3, 5}.
+For “D”, Introducing the double of 5, i.e., 10 on the ‘TRACKRECORD’. Therefore, TRACKRECORD = {2, 3, 5, 10}.
+For “C”, Nullifying the score 10 and thus removing it from the ‘TRACKRECORD’. Therefore, TRACKRECORD = {2, 3, 5}.
+Sum of all the scores = 2 + 3 + 5 = 10.
+
+T.C => O(N)
+S.C => O(N)
