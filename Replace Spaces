@@ -1,0 +1,37 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static StringBuilder replaceSpaces(StringBuilder str) {
+		// Write your code here.
+
+		int n = str.length();
+
+		for(int i = 0; i < n; i++){
+			char ch = str.charAt(i);
+
+			if(ch == ' '){
+				str.replace(i,i+1,"@40");
+				n += 2;
+			}
+		}
+		return str;
+	}
+}
+
+You have been given a string 'STR' of words. You need to replace all the spaces between words with “@40”.
+
+Sample Input 1:
+Coding Ninjas Is A Coding Platform
+Hello World
+
+Sample Output 1:
+Coding@40Ninjas@40Is@40A@40Coding@40Platform
+Hello@40World
+Explanation of Sample Output 1:
+In test case 1, After replacing the spaces with “@40” string is: 
+Coding@40Ninjas@40Is@40A@40Coding@40Platform
+
+
+
+T.C => O(N)
+S.C => O(1)
