@@ -1,0 +1,58 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static String zigzagConversion(String s, int row) {
+		// Write your code here.
+		StringBuilder sb[] = new StringBuilder[row];
+
+		if(row == 1 || row > s.length()){
+			return s;
+		}
+
+		for(int i = 0; i < row; i++){
+			sb[i] = new StringBuilder();
+		}
+
+		int currRow = 0;
+		boolean goingDown = true;
+
+		for(char ch : s.toCharArray()){
+			sb[currRow].append(ch);
+
+			if(currRow == 0){
+				goingDown = true;
+			}else if(currRow == row-1){
+				goingDown = false;
+			}
+
+			currRow += goingDown ? 1:-1;
+		}
+
+		StringBuilder str = new StringBuilder();
+		for(StringBuilder strr : sb){
+			str.append(strr);
+		}
+		return str.toString();
+	}
+}
+
+
+
+You are given a string ‘S’ and an integer ‘ROW’, convert the row into a zig-zag pattern with rows equal to ‘ROW’ and output it row-wise. You may refer to the example below to better
+understand what the zig-zag pattern means.
+
+Example :
+If ‘S’ = “beaninjacoder” and ‘ROW’ = 4
+
+Then the zig-zag pattern is:
+b         j        r
+e     n   a     e
+a   i     c   d
+n         o
+
+Therefore, we will print “bjrenaeaicdno”.
+
+
+
+T.C => O(N)
+S.C => O(N)
