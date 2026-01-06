@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Solution {
+	public static int minDeletions(String str) {
+	    // Write your code here.
+
+		int freq[] = new int[26];
+
+		for(char ch : str.toCharArray()){
+			freq[ch - 'a']++;
+		}
+
+		Set<Integer> used = new HashSet<>();
+		int deltion = 0;
+
+		for(int f : freq){
+			while( f > 0 && used.contains(f)){
+				f--;
+				deltion++;
+			}
+
+			if(f > 0){
+				used.add(f);
+			}
+		}
+		return deltion;
+	}
+}
+
+
+You are given a string ‘STR’ consisting of lowercase English alphabets. Your take is to find out the minimum number of character deletions required such that
+each character in the final string has a unique frequency.
+
+
+Sample Input 1 :
+babccbc
+
+Sample Output 1 :
+1
+
+Explanation For Sample Input 1 :
+Test Case 1 :
+The frequency of ‘a’ is 1, of ‘b’ is 3 and of ‘c’ is 3. Therefore after deletion of one character of either ‘b’ or ‘c’ makes the frequencies 1,2 and 3.
+
+
+T.C => O(N)
+S.C => O(N)
