@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static char firstNonRepeating(String str) {
+		// Write your code here
+		Map<Character,Integer> map = new HashMap<>();
+
+		for(int i = 0; i < str.length(); i++){
+			char ch = str.charAt(i);
+			map.put(ch,map.getOrDefault(ch,0)+1);
+			
+		}
+
+		for(int i = 0; i < str.length(); i++){
+			char ch = str.charAt(i);
+			if(map.get(ch) == 1){
+				return ch;
+			}
+			
+		}
+
+		return '#';
+	}
+}
+
+
+first non-repeating character in the string and return it. If it doesn’t exist, return ‘#’.
+
+For example:
+For the input string 'abcab', the first non-repeating character is ‘c’. As depicted the character ‘a’ repeats at index 3 and character ‘b’ 
+repeats at index 4. Hence we return the character ‘c’ present at index 2.
+
+
+T.C => O(n)
+S.C => O(n)
