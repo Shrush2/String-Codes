@@ -1,0 +1,55 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String specificOrder(String x, String y) {
+        // Write your code here.
+        int freq[] = new int[26];
+
+        for(int i = 0; i < x.length(); i++){
+            freq[x.charAt(i) - 'a']++;
+        }
+
+        StringBuilder st = new StringBuilder();
+
+        for(char ch : y.toCharArray()){
+            while(freq[ch - 'a'] > 0){
+                st.append(ch);
+                freq[ch - 'a']--;
+            }
+        }
+
+        for(int i = 0; i < 26; i++){
+            while(freq[i] > 0){
+                st.append((char)(i + 'a'));
+                freq[i]--;
+            }
+        }
+        return st.toString();
+
+    }
+}
+
+
+
+You are provided with the two strings named X and Y respectively. Y has its own specific order and has no repeating characters. Your task is to arrange the characters of the first string i.e. 
+X in such a way that the order of characters in X is exactly the same as in Y, which means if ‘d’ occurs after ‘c’ in Y then it should also occur after ‘c’ in X ( obviously if X has ‘d’ and ‘c’ 
+as characters in it ). All you have to do is, convert string X in the specific order with respect to string Y.
+
+Note :
+Both the strings have only lowercase English alphabets. 
+There may be more than one correct solution, you have to return any one of the possible solutions.
+
+
+Sample Input 1:
+acabd
+abc
+
+Sample Output 1:
+aabcd
+
+Explanation of Sample Input 1:
+String Y has ‘a’ first then ‘b’ and then ‘c’ and therefore string X must be ordered as ‘aabcd’ to keep the respective order of characters same as in string Y.
+Other possible answers are: ‘daabc’ , ‘adabc’ , ‘aadbc’, ‘aabdc’.
+
+T.C => O(N)
+S.C => O(N)
