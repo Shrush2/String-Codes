@@ -1,0 +1,66 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String missingNumber(String s) {
+        // Write your code here.
+
+        int n = s.length();
+        for(int len = 1; len <= 6 && len < n ; len++){
+
+            if(s.charAt(0) == '0' && len > 1) continue;
+
+            long prev = Long.parseLong(s.substring(0,len));
+            int i = len;
+            long missing = -1;
+            boolean foundMissing = false;
+
+            while(i < n){
+                long curr = prev + 1;
+                String currStr = String.valueOf(curr);
+
+                if(i + currStr.length() <= n &&
+                s.substring(i,i+currStr.length()).equals(currStr)){
+                    prev = curr;
+                    i += currStr.length();
+                }else if(!foundMissing){
+                    long next = curr + 1;
+                    String nextStr = String.valueOf(next);
+
+                    if(i + nextStr.length() <= n &&
+                    s.substring(i,i+nextStr.length()).equals(nextStr)){
+                        missing = curr;
+                        i += nextStr.length();
+                        foundMissing = true;
+                        prev = next;
+                    }else{
+                        break;
+                    }
+                }else{
+                    break;
+                }
+            }
+            if(i == n && foundMissing){
+                return String.valueOf(missing);
+            }
+        }
+        return "-1";
+    }
+}
+
+
+You had a sequence of consecutive nonnegative integers. You appended all integers at the end of each other to form a string ‘S’ without any separators.
+While appending each integer in a string, you forgot to append exactly one integer from the sequence. Now all the integers from a string and you don’t know which 
+integer you have missed.
+
+For example sequence 11, 12, 13 may form a string (without any separators) “1113” if you miss 12.
+
+Your task is to find the missing number in the string such that it is possible to obtain a sequence of consecutive non-negative integers from the given string. 
+If more than one missing integer is present or all the integers are already present or if the string is not valid then the answer will be -1 for all such cases.
+
+Note:
+1. The string consists of only digits 0 to 9.
+2. The numbers will have no more than six digits. 
+
+
+T.C => O(N)
+S.c => O(1)
