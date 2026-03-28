@@ -1,0 +1,109 @@
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the structure of the 'Element' and 'Attribute' object:
+
+	class Attribute {
+	    String tag;
+	    String value;
+	}
+
+	class Element {
+	    String tag;
+	    ArrayList<Attribute> attribute;
+	    ArrayList<Element> child;
+	    String value;
+	    Element() {
+	        attribute = new ArrayList<Attribute>();
+	        child = new ArrayList<Element>();
+	    }
+	}
+
+*****************************************************************/
+
+public class Solution {
+	public static String encodeXML(Element element, HashMap<String, Integer> tagToInt) {
+		// Write your code here.
+		StringBuilder sb = new StringBuilder();
+		dfs(element,tagToInt,sb);
+		return sb.toString().trim();
+	}
+
+	public static void dfs(Element element,HashMap<String, Integer> map,StringBuilder sb){
+       //main ele tag starting wala
+		sb.append(map.get(element.tag)).append(" ");
+
+		//attriute under ke
+		for(Attribute attr : element.attribute){
+			sb.append(map.get(attr.tag)).append(" ");
+
+			//attribute ki value
+			sb.append(attr.value).append(" ");
+		}
+		//end closing tag
+		sb.append("0 ");
+
+		//child of tag ,if its is not null and size > 0 ,recursive call
+		if(element.child != null && element.child.size() > 0){
+			for(Element child : element.child){
+				dfs(child,map,sb);
+			}
+		}else{
+			//the val of child add it
+			if(element.value != null && element.value.length() > 0){
+				sb.append(element.value).append(" ");
+			}
+		}
+		sb.append("0 ");
+	}
+}
+
+
+Problem statement
+The eXtensible Markup Language (XML) is a simple text-based format for representing information. The syntax for XML is as follows:
+
+Element => TAG Attributes END Child END
+Attribute => TAG Value
+Value: String value.
+TAG: Default mapping to an integer value.
+Child: List of ‘Elements’ or a single ‘Value’. Never both.
+End: Encoded as 0.
+You are given an ‘Element’ object and the mapping of each ‘TAG’ to an integer value. The task is to encode this ‘Element’ using the ‘TAG’ mapping and return the resultant string.
+
+Example:
+Element object:
+<codingNinjas course=“InterviewPreparation” type=“IndividualCourse”>
+    <topic name=“Aptitude”>CourseContents</topic>
+</codingNinjas>
+
+Tag mapping:
+‘codingNinjas’ => 1, ‘topic’ => 2, ‘courseName’ => 3, ‘type’ => 4, ‘topicName’ => 5
+
+The given element is ‘codingNinjas’, and it has a single child element ‘topic’. The element ‘codingNinjas’ has two attributes having tags as ‘course’ and ‘type’. The element ‘topic’ has one attribute with the tag as ‘name’. So, the encoded string is: 
+
+‘1 3 InterviewPreparation 4 IndividualCourse 0 2 5 Aptitude 0 CourseContents 0 0’
+Note:
+1. ‘END’ is always encoded as 0.
+2. An ‘Element’ can have zero or multiple ‘Attributes’.
+Function description:
+The function ‘encodeXML’ has the following parameters:
+Pointer to an ‘Element’ object.
+Mapping of ‘TAG’ name (string) to an integer value.
+Structure of ‘Element’ and ‘Attribute’ object:
+Element {
+    String tag;
+    List<Attribute> attributes;
+    List<Element *> child;
+    String value;
+}
+Attribute {
+    String tag;
+    String value;
+}
+
+If ‘Element’ stores a list of child elements, then ‘(Element => values)’ stores an empty string.
+
+
+T.C => O(N)
+S.C => O(N)
