@@ -1,0 +1,58 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String[] arrangeAuthors(String[][] S) {
+        // Write your code here
+        ArrayList<String> ans = new ArrayList<>();
+
+        int n = S.length;
+
+        for(int i = 0; i < n; i++){
+            ans.add((i+1) + ". "+ S[i][0]);
+
+            for(int j = 1; j < S[i].length; j++){
+                char ch = (char) ('A' + j-1);
+                ans.add("  " + ch + ". "+ S[i][j]);
+            }
+        }
+        return ans.toArray(new String[0]);
+    }
+}
+
+Problem statement
+You are given a certain format of books and their authors.
+For example -
+NameOfAuthor1 Book1 Book2
+NameOfAuthor2 Book1
+
+Your task is to print the given information in the following manner:
+1. NameOfAuthor1
+   A. Book1
+   B. Book2
+
+2. NameOfAuthor2
+   A. Book1
+You are given a 2D array of strings ‘S’ where each vector is the information about the i-th author, the first index of this vector is the
+‘NameOfAuthor’ and the other indexes are the ‘Books’ written by the author. You are supposed to print the Authors and their books in the above mentioned format.
+
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1 :
+4 ChetanBhagat TwoStates Revolution HalfGirlfriend OneIndianGirl
+2 JKRowling HarryPotter FantasticBeasts
+2 JeffreyArcher OldLove FalseImpression
+Sample Output 1 :
+1. ChetanBhagat
+    A. TwoStates
+    B. Revolution
+    C. HalfGirlfriend
+    D. OneIndianGirl 
+2. JKRowling
+    A. HarryPotter
+    B. FantasticBeasts
+1. JeffreyArcher
+    A. OldLove 
+    B. FalseImpression
+
+
+T.C => O(N^2)
+S.C => O(N)
