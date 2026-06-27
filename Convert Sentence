@@ -1,0 +1,45 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static String convertSentence(String str,int n) 
+	{
+		//    Write your code here.
+
+		String map[] =  {
+			"2","22","222",
+			"3","33","333",
+			"4","44","444",
+			"5","55","555",
+			"6","66","666",
+			"7","77","777","7777",
+			"8","88","888",
+			"9","99","999","9999"
+		};
+		StringBuilder ans = new StringBuilder();
+
+		for(char ch : str.toCharArray()){
+			int last = ch - 'a';
+			ans.append(map[last]);
+
+		}
+		return ans.toString();
+	}
+}
+
+
+You are given a sentence in the form of a string ‘S’. You have to convert ‘S’ into its equivalent mobile numeric keypad sequence, i.e. 
+print the sequence in such a way that if it is typed on the given keypad, the output should be the string ‘S’. A keypad for the reference is shown below.
+
+Note:
+1. There will be only lower case letters.
+2. There will not be any special characters or capital letters in the input string.
+3. There will be no spaces in the string.
+
+Sample Input 1:
+codingninjas
+
+Sample Output 1:
+22266634446646644466527777
+
+T.C => O(n)
