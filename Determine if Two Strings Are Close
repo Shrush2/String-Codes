@@ -1,0 +1,51 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean stringChallenge(String str1, String str2) {
+        // Write your code here.
+        if(str1.length() != str2.length()){
+            return false;
+        }
+
+        HashMap<Character,Integer> map1 = new HashMap<>();
+        HashMap<Character,Integer> map2 = new HashMap<>();
+
+        for(int i = 0; i < str1.length(); i++){
+            map1.put(str1.charAt(i),map1.getOrDefault(str1.charAt(i),0)+1);
+            map2.put(str2.charAt(i),map2.getOrDefault(str2.charAt(i),0)+1);
+
+        }
+
+        if(!map1.keySet().equals(map2.keySet())){
+            return false;
+        }
+
+        ArrayList<Integer> arr1 = new ArrayList<>(map1.values());
+        ArrayList<Integer> arr2 = new ArrayList<>(map2.values());
+
+        Collections.sort(arr1);
+        Collections.sort(arr2);
+        
+        return arr1.equals(arr2);
+
+    }
+}
+
+
+Sagar and Naresh are friends. Sagar loves to play with strings. He gave a challenge to Naresh. Sagar gave him two strings, ‘STR1’ and ‘STR2’, and asked to make both the strings equal by using only the below-given operations.
+
+1) He can swap any two characters of a string.
+For example, “coding” -> “cgdino” i.e., swap ‘o’ with ‘g’.
+2) He can change every occurrence of two existing characters into each other.
+For example, “aababcc” -> “ccbcbaa” i.e., change all occurrences of ‘a’ into ‘c’ and ‘c’ into ‘a’.
+Note: Naresh can use these operations on either of the string and any number of times.
+
+eg - 1-->
+abcd dcba 
+Explanation of sample input 1 :
+In the first test case,
+First, swap characters ‘a’ and ‘d’ of string ‘STR1’ after this ‘STR1’ is “dbca”.
+Then swap characters ‘b’ and ‘c’ of string ‘STR1’ after this ‘STR1’ is “dcba”.
+Now both the strings are equal.
+
+
